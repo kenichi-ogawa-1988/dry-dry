@@ -23,10 +23,7 @@ export class JsonUtils {
         return JSON.stringify(obj, null, 2) + '\n';
     }
 
-    public static loadObject<V>(
-        file: string,
-        classReference: new () => V,
-    ): V {
+    public static loadObject<V>(file: string, classReference: new () => V): V {
         // Choose your settings
         // Check the detailed reference in the chapter "JsonConvert class properties and methods"
         // from json2typescript
