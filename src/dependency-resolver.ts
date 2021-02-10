@@ -15,11 +15,12 @@ export class DependencyResolver {
     /**
      * @param {Cli} cli The cli to use
      */
-    constructor(private readonly cli: Cli, private readonly dryCommandConfig: DryCommandConfig) {}
+    public constructor(private readonly cli: Cli, private readonly dryCommandConfig: DryCommandConfig) {}
 
     /**
      * Resolves provided dry dependencies by fetching them if necessary.
      * The resolution success means that all requested depencies are available in the current work directory.
+     *
      * @param {DryDependencies} dependencies The dependencies to resolve
      * @return {Promise<void>} A resolved promise on success, rejected promise on failure.
      */

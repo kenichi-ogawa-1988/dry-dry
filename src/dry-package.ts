@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import * as deepDiff from 'deep-diff';
 import * as merge from 'deepmerge';
 import * as fs from 'fs';
@@ -9,7 +10,7 @@ import { Logger } from './logger';
 import { NpmPackage } from './npm-package';
 
 // TODO: consider adding a type to 'any'
-// tslint:disable-next-line:no-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type WeakDryPackageContent = DryPackageContent & any;
 
 /**
@@ -26,7 +27,6 @@ export class DryPackage {
     private constructor(
         private readonly dependencyResolver: DependencyResolver,
         private readonly location: string,
-        // tslint:disable-next-line:variable-name
         private _content: WeakDryPackageContent,
     ) {}
 
@@ -60,15 +60,17 @@ export class DryPackage {
 
     /**
      * Builds a NpmPackage
+     *
      * @return {Promise<NpmPackage>} The NpmPackage
      */
     public buildNpmPackage(): Promise<NpmPackage> {
-        DryPackage.logger.info(`Building npm package`);
+        DryPackage.logger.info('Building npm package');
         return this.doBuildNpmPackage();
     }
 
     /**
      * Merge DryPackage content into the current DryPackage content
+     *
      * @param {DryPackage} dryPackage The DryPackage content to append
      */
     private merge(dryPackage: DryPackage): void {
@@ -133,19 +135,19 @@ export class DryPackage {
     private resolveManagedDependencies(): void {
         const dependencyMgmt = this._content.dependencyManagement;
 
-        DryPackage.logger.info(`Resolving version of "managed" dependencies...`);
+        DryPackage.logger.info('Resolving version of "managed" dependencies...');
         this.resolveManaged(this._content.dependencies, dependencyMgmt);
 
-        DryPackage.logger.info(`Resolving version of "managed" devDependencies...`);
+        DryPackage.logger.info('Resolving version of "managed" devDependencies...');
         this.resolveManaged(this._content.devDependencies, dependencyMgmt);
 
-        DryPackage.logger.info(`Resolving version of "managed" peerDependencies...`);
+        DryPackage.logger.info('Resolving version of "managed" peerDependencies...');
         this.resolveManaged(this._content.peerDependencies, dependencyMgmt);
 
-        DryPackage.logger.info(`Resolving version of "managed" optionalDependencies...`);
+        DryPackage.logger.info('Resolving version of "managed" optionalDependencies...');
         this.resolveManaged(this._content.optionalDependencies, dependencyMgmt);
 
-        DryPackage.logger.info(`Resolving version of "managed" bundledDependencies...`);
+        DryPackage.logger.info('Resolving version of "managed" bundledDependencies...');
         this.resolveManaged(this._content.bundledDependencies, dependencyMgmt);
     }
 
@@ -153,12 +155,13 @@ export class DryPackage {
      * This method will replace any value equals to "managed" provided
      * in dependencies parameter by the value of the same key provided
      * in dependenciesManagement parameter
+     *
      * @param {any} dependencies object containing a list of key/value
      * @param {any} dependencyManagement object containing a list of key/value
      */
     private resolveManaged(dependencies: { [s: string]: string }, dependencyManagement: { [s: string]: string }): void {
         if (!dependencies || !dependencyManagement) {
-            DryPackage.logger.info(`Nothing to resolve, continue...`);
+            DryPackage.logger.info('Nothing to resolve, continue...');
             return;
         }
 

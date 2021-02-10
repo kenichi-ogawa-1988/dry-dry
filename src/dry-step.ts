@@ -39,6 +39,7 @@ export abstract class DryStep {
 
     /**
      * Construct a new step
+     *
      * @param {DryLifecyclePhase} phase the phase when this step will be executed
      * @param {number} orderInPhase the number used for ordering steps and features executed in the same phase
      */
@@ -50,6 +51,7 @@ export abstract class DryStep {
 
     /**
      * Set if this step will be executed
+     *
      * @param {boolean} active true if the step must be executed
      */
     public setActive(active: boolean): void {
@@ -58,6 +60,7 @@ export abstract class DryStep {
 
     /**
      * Return in which phase this step will be executed
+     *
      * @return {DryLifecyclePhase} the execution phase
      */
     public getLifecyclePhase(): DryLifecyclePhase {
@@ -66,6 +69,7 @@ export abstract class DryStep {
 
     /**
      * Return the order number
+     *
      * @return {number} the order number
      */
     public getOrderInPhase(): number {
@@ -74,6 +78,7 @@ export abstract class DryStep {
 
     /**
      * Method called by the dry command executor to execute the step
+     *
      * @param {DryContext} context the execution context
      */
     public exec(context: DryContext): Promise<DryContext> {
@@ -92,6 +97,7 @@ export abstract class DryStep {
 
     /**
      * This function will execute the step and must be provided by extending classes
+     *
      * @param {DryContext} context the context of the feature
      * @return {Promise<DryContext>} the feature's execution promise
      */

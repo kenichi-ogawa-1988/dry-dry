@@ -11,10 +11,11 @@ export class DryCommandExecutor {
     /**
      * @param {DryContext} dryContext The execution context
      */
-    constructor(private readonly dryContext: DryContext) {}
+    public constructor(private readonly dryContext: DryContext) {}
 
     /**
      * Execute the dry command received
+     *
      * @return {Promise<void>} Resolved promise on success, rejected promise on failure.
      */
     public execute(): Promise<DryContext> {

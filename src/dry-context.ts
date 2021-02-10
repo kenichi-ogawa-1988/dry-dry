@@ -16,6 +16,7 @@ export class DryContext {
 
     /**
      * Construct a new dry context
+     *
      * @param {Cli} cli the subprocess wrapper
      * @param {DependencyResolver} dependencyResolver the parent resolver
      * @param {DryCommandConfig} dryConfig the dry configuration created from arguments
@@ -24,6 +25,7 @@ export class DryContext {
 
     /**
      * Dry execution steps and features
+     *
      * @return {DryStep[]} the list of steps and features to execute
      */
     public getExecutionSteps(): DryStep[] {
@@ -32,6 +34,7 @@ export class DryContext {
 
     /**
      * Set the Dry execution steps and features
+     *
      * @param {DryStep[]} executionSteps the list of steps and features to execute
      */
     public setExecutionSteps(executionSteps: DryStep[]): void {
@@ -40,6 +43,7 @@ export class DryContext {
 
     /**
      * Get the dry package. Undefined until the end of DryLifecyclePhase.BUILD_DRY_PACKAGE
+     *
      * @return {DryPackage} the builded dry package
      */
     public getDryPackage(): DryPackage {
@@ -48,6 +52,7 @@ export class DryContext {
 
     /**
      * Set the dry package at the end of DryLifecyclePhase.BUILD_DRY_PACKAGE
+     *
      * @param {DryPackage} dryPackage the builded dry package
      */
     public setDryPackage(dryPackage: DryPackage): void {
@@ -56,6 +61,7 @@ export class DryContext {
 
     /**
      * Get the npm package. Undefined until the end of DryLifecyclePhase.BUILD_NPM_PACKAGE
+     *
      * @return {NpmPackage} the builded npm package
      */
     public getNpmPackage(): NpmPackage {
@@ -64,6 +70,7 @@ export class DryContext {
 
     /**
      * Set the npm package at the end of DryLifecyclePhase.BUILD_NPM_PACKAGE
+     *
      * @param {NpmPackage} npmPackage the builded npm package
      */
     public setNpmPackage(npmPackage: NpmPackage): void {
@@ -72,6 +79,7 @@ export class DryContext {
 
     /**
      * Get the builded dry configuration
+     *
      * @return {DryCommandConfig} the builded configuration
      */
     public getDryCommandConfig(): DryCommandConfig {
@@ -80,6 +88,7 @@ export class DryContext {
 
     /**
      * Get the parent dependency resolver
+     *
      * @return {DependencyResolver} the dependency resolver
      */
     public getDependencyResolver(): DependencyResolver {
@@ -88,6 +97,7 @@ export class DryContext {
 
     /**
      * Get the sub process execution wrapper
+     *
      * @return {Cli} the sub process execution wrapper
      */
     public getCli(): Cli {

@@ -18,7 +18,7 @@ export class EnableLoggingLevel extends DryFeature {
 
     /** @inheritdoc */
     public execute(context: DryContext): Promise<DryContext> {
-        return new Promise<DryContext>((resolve, reject) => {
+        return new Promise<DryContext>((resolve) => {
             Logger.setLevel(this.argumentValue);
             resolve(context);
         });

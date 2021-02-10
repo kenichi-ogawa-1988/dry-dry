@@ -170,7 +170,12 @@ module.exports = {
         "no-throw-literal": "error",
         "no-trailing-spaces": "error",
         "no-undef-init": "error",
-        "no-underscore-dangle": "error",
+        "no-underscore-dangle": [
+            "error",
+            { 
+                "allowAfterThis": true 
+            }
+        ],
         "no-unsafe-finally": "error",
         "no-unused-labels": "error",
         "no-var": "error",

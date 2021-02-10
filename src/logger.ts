@@ -18,6 +18,7 @@ export class Logger {
 
     /**
      * Set the level for all loggers
+     *
      * @param {string} namespace The logger level. one of ['error','info','debug','trace']
      */
     public static setLevel(level: string): void {
@@ -32,31 +33,31 @@ export class Logger {
         return new Logger(namespace);
     }
 
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public trace(...msg: any[]): void {
         this.innerLogger.setLevel(Logger.lvl);
         this.innerLogger.trace(chalk.default.dim(`${new Date()} [TRACE]: ${msg}`));
     }
 
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public debug(...msg: any[]): void {
         this.innerLogger.setLevel(Logger.lvl);
         this.innerLogger.debug(chalk.default.cyan(`${new Date()} [DEBUG]: ${msg}`));
     }
 
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public info(...msg: any[]): void {
         this.innerLogger.setLevel(Logger.lvl);
         this.innerLogger.info(chalk.default.blue(`${new Date()} [INFO]: ${msg}`));
     }
 
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public warn(...msg: any[]): void {
         this.innerLogger.setLevel(Logger.lvl);
         this.innerLogger.warn(chalk.default.yellow(`${new Date()} [WARN]: ${msg}`));
     }
 
-    // tslint:disable-next-line: no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public error(...msg: any[]): void {
         this.innerLogger.setLevel(Logger.lvl);
         this.innerLogger.error(chalk.default.red(`${new Date()} [ERROR]: ${msg}`));

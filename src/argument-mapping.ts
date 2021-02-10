@@ -7,11 +7,10 @@ import { JsonCustomConvert } from 'json2typescript/src/json2typescript/json-cust
  */
 @JsonConverter
 class ArgValueMapConverter implements JsonCustomConvert<Map<string, string[]>> {
-    // tslint:disable:no-any
-    public serialize(map: Map<string, string[]>): any {
+    public serialize(map: Map<string, string[]>): string {
         return JSON.stringify(map);
     }
-    // tslint:disable:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     public deserialize(map: any): Map<string, string[]> {
         const tsMap: Map<string, string[]> = new Map<string, string[]>();
         Object.getOwnPropertyNames(map).forEach((key) => tsMap.set(key, map[key]));
@@ -53,13 +52,8 @@ export class ArgumentMapping {
     private mappedArgumentValues: Map<string, string[]> = undefined;
 
     /**
-     * simple constructor
-     */
-    // tslint:disable:no-empty
-    constructor() {}
-
-    /**
      * Indicate if this argument expect an associated value
+     *
      * @return {boolean} expect associated value
      */
     public isExpectingArgumentValue(): boolean {
@@ -69,6 +63,7 @@ export class ArgumentMapping {
     /**
      * Indicate if this argument mapping can be applied to the install parent command
      * executed by dependecny-resolver
+     *
      * @return {boolean} can populate install parent command arguments
      */
     public isAllowedArgInInstallParentCommand(): boolean {
@@ -77,6 +72,7 @@ export class ArgumentMapping {
 
     /**
      * Check if the argument can be handled by this mapping
+     *
      * @return {boolean} True if this mapping can handle the argument.
      */
     public isArgumentMapped(arg: string): boolean {
@@ -88,6 +84,7 @@ export class ArgumentMapping {
 
     /**
      * Map the received arguments and return the mapped arguments
+     *
      * @param {string} arg the current argument
      * @param {string} argValue the current argument associated value if already extracted/shifted from inputArgs
      * @return {string[]} the mapped arguments or the input arguments if no mapping found

@@ -27,31 +27,31 @@ export class EnableLogging extends DryFeature {
 
     /** @inheritdoc */
     public execute(context: DryContext): Promise<DryContext> {
-        return new Promise<DryContext>((resolve, reject) => {
+        return new Promise<DryContext>((resolve) => {
             switch (this.activeTrigger) {
-                case DryOption.SILENT:
-                case DryOption.S: {
-                    Logger.setLevel('error');
-                    break;
-                }
-                case DryOption.QUIET:
-                case DryOption.Q: {
-                    Logger.setLevel('warn');
-                    break;
-                }
-                case DryOption.D: {
-                    Logger.setLevel('info');
-                    break;
-                }
-                case DryOption.VERBOSE:
-                case DryOption.DD: {
-                    Logger.setLevel('debug');
-                    break;
-                }
-                case DryOption.DDD: {
-                    Logger.setLevel('trace');
-                    break;
-                }
+            case DryOption.SILENT:
+            case DryOption.S: {
+                Logger.setLevel('error');
+                break;
+            }
+            case DryOption.QUIET:
+            case DryOption.Q: {
+                Logger.setLevel('warn');
+                break;
+            }
+            case DryOption.D: {
+                Logger.setLevel('info');
+                break;
+            }
+            case DryOption.VERBOSE:
+            case DryOption.DD: {
+                Logger.setLevel('debug');
+                break;
+            }
+            case DryOption.DDD: {
+                Logger.setLevel('trace');
+                break;
+            }
             }
             resolve(context);
         });

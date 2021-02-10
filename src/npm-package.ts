@@ -17,18 +17,16 @@ export class NpmPackage {
     /**
      * The content of this NpmPackage
      */
-    // tslint:disable-next-line:no-any
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     private readonly content: any;
 
     /**
      * @param {DryPackage} dryPackage The DryPackage from which this NpmPackage originates
      */
-    constructor(private readonly dryPackage: DryPackage) {
+    public constructor(private readonly dryPackage: DryPackage) {
         this.content = this.dryPackage.content;
-        // tslint:disable-next-line:no-string-literal
-        delete this.content['dry'];
-        // tslint:disable-next-line:no-string-literal
-        delete this.content['dependencyManagement'];
+        delete this.content.dry;
+        delete this.content.dependencyManagement;
     }
 
     /**
@@ -40,6 +38,7 @@ export class NpmPackage {
 
     /**
      * Save the current NpmPackage to the provided location
+     *
      * @param {string} location the target location
      */
     public saveTo(location: string): void {

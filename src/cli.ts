@@ -24,6 +24,7 @@ export class Cli {
 
     /**
      * Executes the provided command line on the system
+     *
      * @param {string} commandLine The command line to execute
      * @return {Promise<void>} A resolved promise in case of success, rejected in case of failure
      */
@@ -41,7 +42,11 @@ export class Cli {
                 if (finallyFunc !== undefined) {
                     finallyFunc();
                 }
-                code === 0 ? resolve() : reject(code);
+                if (code === 0) {
+                    resolve(void 0);
+                } else {
+                    reject(code);
+                }
             });
         });
     }

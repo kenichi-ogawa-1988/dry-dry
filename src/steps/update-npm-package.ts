@@ -7,7 +7,7 @@ import { DryStep } from '../dry-step';
 export class UpdateNpmPackage extends DryStep {
     /** @inheritdoc */
     public execute(context: DryContext): Promise<DryContext> {
-        return new Promise<DryContext>((resolve, reject) => {
+        return new Promise<DryContext>((resolve) => {
             context.getNpmPackage().update();
             resolve(context);
         });

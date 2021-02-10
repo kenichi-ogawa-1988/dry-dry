@@ -45,7 +45,7 @@ export class DryCommandConfig {
     /**
      * @param {Cli} cli The CLI to use
      */
-    constructor(private readonly rawArgs: string[]) {
+    public constructor(private readonly rawArgs: string[]) {
         this.steps = [];
         this.availableFeatures = [];
         this.commandProxyArgs = [];
@@ -57,6 +57,7 @@ export class DryCommandConfig {
 
     /**
      * Compute and order the list of dry steps and activated features
+     *
      * @return {DryStep[]} the ordered list of steps and features
      */
     public getOrderedStepsAndFeatures(): DryStep[] {
@@ -74,6 +75,7 @@ export class DryCommandConfig {
     /**
      * Contains the parameters not already handled by dry
      * or those handled by dry but still sent to the package manager proxy command
+     *
      * @return {string[]} the packager proxy arguments
      */
     public getCommandProxyArgs(): string[] {
@@ -84,6 +86,7 @@ export class DryCommandConfig {
      * Contains the parameters not already handled by dry
      * or those handled by dry but still sent to the package manager proxy command
      * and allowed in the dependency resolver install parent command
+     *
      * @return {string[]} the install parant command proxy arguments
      */
     public getInstallParentCommandProxyArgs(): string[] {
@@ -92,6 +95,7 @@ export class DryCommandConfig {
 
     /**
      * get the current packager descriptor
+     *
      * @return {DryPackagerDescriptor} the packager descriptor
      */
     public getPackagerDescriptor(): DryPackagerDescriptor {

@@ -7,10 +7,11 @@ export class CommandProxy {
     /**
      * @param {Cli} cli The CLI to use
      */
-    constructor(private readonly cli: Cli, private readonly command: string) {}
+    public constructor(private readonly cli: Cli, private readonly command: string) {}
 
     /**
      * Propagate the command received by dry to npm
+     *
      * @return {Promise<void>} Resolved promise on success, rejected promise on failure.
      */
     public proxy(rawArgs: string[]): Promise<void> {

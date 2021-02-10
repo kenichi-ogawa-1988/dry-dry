@@ -1,8 +1,6 @@
-// tslint:disable:no-unused-expression
-// tslint:disable:no-any
+/* eslint-disable */
 import { expect } from 'chai';
 import * as childProcess from 'child_process';
-// tslint:disable-next-line:no-require-imports
 import deepEqual = require('deep-equal');
 import * as fs from 'fs';
 import * as fsExtra from 'fs-extra';
@@ -28,7 +26,7 @@ describe('index', () => {
     const readJson = (file: string): any => JSON.parse(fs.readFileSync(path.resolve(file), 'utf8'));
     const writeJson = (file: string, obj: any): any => fs.writeFileSync(path.resolve(file), JSON.stringify(obj, null, 2) + '\n');
 
-    beforeEach(function(this: Mocha.IBeforeAndAfterContext): any {
+    beforeEach(function(this: Mocha.IBeforeAndAfterContext) {
         this.timeout(10000);
         fsExtra.removeSync(testDir);
         mkdirIfNotExist(testDir);

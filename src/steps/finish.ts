@@ -10,7 +10,7 @@ export class Finish extends DryStep {
 
     /** @inheritdoc */
     public execute(context: DryContext): Promise<DryContext> {
-        return new Promise<DryContext>((resolve, reject) => {
+        return new Promise<DryContext>((resolve) => {
             Finish.logger.info('All steps executed successfully');
             resolve(context);
         });

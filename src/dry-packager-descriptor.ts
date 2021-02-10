@@ -31,12 +31,6 @@ export class DryPackagerDescriptor {
     @JsonProperty('mappedArguments', [ArgumentMapping])
     private mappedArguments: ArgumentMapping[] = [];
 
-    /**
-     * simple constructor
-     */
-    // tslint:disable:no-empty
-    constructor() {}
-
     public static resolveDescriptor(cwd: string, file: string): string {
         const customPackagerPath: string = path.resolve(path.join(cwd, file));
         const dryPackagerPath: string = path.resolve(`${__dirname}/${DryPackagerDescriptor.PACKAGER_TEMPLATES_PATH}/${file}.json`);
@@ -68,6 +62,7 @@ export class DryPackagerDescriptor {
 
     /**
      * Return the list of mapped argument
+     *
      * @return {ArgumentMapping[]} the list of mapped arguments
      */
     public getMappedArguments(): ArgumentMapping[] {
@@ -87,6 +82,7 @@ export class DryPackagerDescriptor {
      * Map the received arguments and populates the output arguments to be used by
      * the install parent command and the proxified command.
      * If no mapping found the arguments are simply accumulated into 'outputArgs'
+     *
      * @param {string} arg the current argument
      * @param {string} argValue the current argument associated value if already extracted/shifted from inputArgs
      * @param {string[]} inputArgs the remaining input arguments to be processed.
@@ -109,6 +105,7 @@ export class DryPackagerDescriptor {
 
     /**
      * Check if the argument can be handled by this mapping
+     *
      * @return {boolean} True if this mapping can handle the argument.
      */
     private isArgumentMapped(arg: string): boolean {
@@ -127,6 +124,7 @@ export class DryPackagerDescriptor {
     /**
      * ArgumentMapping lookup and map the received arguments and populates the output arguments to be used by
      * the install parent command and the proxified command.
+     *
      * @param {string} arg the current argument
      * @param {string} argValue the current argument associated value if already extracted/shifted from inputArgs
      * @param {string[]} inputArgs the remaining input arguments to be processed.

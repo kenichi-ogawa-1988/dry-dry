@@ -11,7 +11,7 @@ export class BuildDryPackage extends DryStep {
 
     /** @inheritdoc */
     public execute(context: DryContext): Promise<DryContext> {
-        return new Promise<DryContext>((resolve, reject) => {
+        return new Promise<DryContext>((resolve) => {
             BuildDryPackage.logger.debug('Reading dry package from disk');
             const dryPackage: DryPackage = DryPackage.readFromDisk(context.getDependencyResolver());
             context.setDryPackage(dryPackage);

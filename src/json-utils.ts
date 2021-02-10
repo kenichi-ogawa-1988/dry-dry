@@ -14,18 +14,18 @@ export class JsonUtils {
 
     /**
      * Generates a JSON string using the NpmPackage JSON style.
+     *
      * @param obj
      * @return {string} Pretty stringifies JSON
      */
-    public static prettyStringify(obj: object): string {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    public static prettyStringify(obj: any): string {
         return JSON.stringify(obj, null, 2) + '\n';
     }
 
     public static loadObject<V>(
         file: string,
-        classReference: {
-            new (): V;
-        },
+        classReference: new () => V,
     ): V {
         // Choose your settings
         // Check the detailed reference in the chapter "JsonConvert class properties and methods"
@@ -35,9 +35,9 @@ export class JsonUtils {
         jsonConvert.ignorePrimitiveChecks = false; // don't allow assigning number to string etc.
         jsonConvert.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL; // never allow null
 
-        // tslint:disable:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const jsons: any[] = [];
-        let json: any = JSON.parse(fs.readFileSync(path.resolve(file), 'utf8'));
+        let json = JSON.parse(fs.readFileSync(path.resolve(file), 'utf8'));
 
         jsons.push(json);
         while (json.extends !== undefined) {

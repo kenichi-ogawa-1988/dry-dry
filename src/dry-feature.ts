@@ -34,6 +34,7 @@ export abstract class DryFeature extends DryStep {
 
     /**
      * Construct a new feature
+     *
      * @param {DryLifecyclePhase} phase the phase when this feature will be executed
      * @param {number} orderInPhase the number used for ordering steps and features executed in the same phase
      */
@@ -44,6 +45,7 @@ export abstract class DryFeature extends DryStep {
 
     /**
      * Indicate if the feature can be triggered by the argument
+     *
      * @param {string} argument the value compared to any dry option values in triggeredBy
      * @return {boolean} true if the feature can be activated
      */
@@ -54,6 +56,7 @@ export abstract class DryFeature extends DryStep {
 
     /**
      * Indicate if the arguments can be transmitted to the package manager command
+     *
      * @return {boolean} true if the arguments can be transmitted
      */
     public isMappingToProxyAllowed(): boolean {
@@ -63,6 +66,7 @@ export abstract class DryFeature extends DryStep {
     /**
      * This function will consume an argument from the list of unprocessed arguments
      * if needArgumentValue === true if not nothing i consumed
+     *
      * @param {string} dryOption the argument triggering this feature (isTriggered must be true)
      * @param {string[]} unprocessedArgs the list of unprocessed arguments received by dry
      * @return {string} the argument value if any else undefined
@@ -82,6 +86,7 @@ export abstract class DryFeature extends DryStep {
 
     /**
      * This function will execute the feature and must be provided by extending classes
+     *
      * @param {DryContext} context the context of the feature
      * @return {Promise<DryContext>} the feature's execution promise
      */
