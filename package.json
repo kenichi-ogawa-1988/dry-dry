@@ -1,6 +1,6 @@
 {
   "name": "dry-dry-revised",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Use npm across multiple projects without repeating yourself",
   "main": "dist/index.js",
   "bin": {
