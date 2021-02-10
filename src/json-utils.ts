@@ -55,6 +55,6 @@ export class JsonUtils {
             diffs.filter((diff) => diff.kind !== 'D').forEach((diff) => deepDiff.applyChange(json, newJson, diff));
         });
 
-        return jsonConvert.deserialize(json, classReference);
+        return jsonConvert.deserializeObject(json, classReference);
     }
 }
