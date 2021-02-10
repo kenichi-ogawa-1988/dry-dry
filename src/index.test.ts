@@ -35,14 +35,22 @@ describe('index', () => {
     });
 
     describe('dry commands match commands', () => {
-        const executeAndAssertSame = (packager: 'yarn' | 'npm' | 'pnpm' | undefined, commands: string[], packageJson: boolean, lock: boolean) => {
+        const executeAndAssertSame = (
+            packager: 'yarn' | 'npm' | 'pnpm' | undefined,
+            commands: string[],
+            packageJson: boolean,
+            lock: boolean,
+        ) => {
             const withNpmDir = path.resolve(`${testDir}/with-npm/foo`);
             mkdirIfNotExist(withNpmDir);
             const withDryDir = path.resolve(`${testDir}/with-dry/foo`);
             mkdirIfNotExist(withDryDir);
             commands.forEach((command) => childProcess.execSync(`npm ${command}`, { cwd: withNpmDir, stdio: childProcessStdio }));
             commands.forEach((command) =>
-                childProcess.execSync(`node ${dryIndexJs} ${packager ? `--dry-packager ${packager}` : ''} ${command}`, { cwd: withDryDir, stdio: childProcessStdio }),
+                childProcess.execSync(`node ${dryIndexJs} ${packager ? `--dry-packager ${packager}` : ''} ${command}`, {
+                    cwd: withDryDir,
+                    stdio: childProcessStdio,
+                }),
             );
 
             if (packageJson) {
@@ -56,7 +64,7 @@ describe('index', () => {
         describe('npm', () => {
             it('init -f', () => executeAndAssertSame('npm', ['init -f'], true, false)).timeout(30000);
             it('init -f && install', () => executeAndAssertSame('npm', ['init -f', 'install'], true, true)).timeout(30000);
-            it('init -f && install && pack', () => executeAndAssertSame('npm', ['init -f', 'install', 'pack'], true, true)).timeout(30000);    
+            it('init -f && install && pack', () => executeAndAssertSame('npm', ['init -f', 'install', 'pack'], true, true)).timeout(30000);
         });
     });
 
@@ -134,7 +142,10 @@ describe('index', () => {
                 writeJson(`${childProject}/package-dry.json`, classicNpmPackage);
 
                 // Run the script
-                childProcess.execSync(`node ${dryIndexJs} ${packagerArg} --dry-keep-package-json`, { cwd: childProject, stdio: childProcessStdio });
+                childProcess.execSync(`node ${dryIndexJs} ${packagerArg} --dry-keep-package-json`, {
+                    cwd: childProject,
+                    stdio: childProcessStdio,
+                });
 
                 const packageJson: any = readJson(`${childProject}/package.json`);
 
@@ -158,7 +169,7 @@ describe('index', () => {
         describe('yarn', () => {
             it('yarn packager arguments simple mapping without argument value', () => {
                 const yarn: DryPackagerDescriptor = JsonUtils.loadObject(yarnDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '-dd';
                 const argValue: string = undefined;
                 const inArgs: string[] = [];
@@ -172,7 +183,7 @@ describe('index', () => {
             });
             it('yarn packager arguments simple mapping with argument', () => {
                 const yarn: DryPackagerDescriptor = JsonUtils.loadObject(yarnDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '--loglevel';
                 const argValue: string = 'trace';
                 const inArgs: string[] = [];
@@ -186,7 +197,7 @@ describe('index', () => {
             });
             it('yarn packager arguments simple mapping without argument value extracted', () => {
                 const yarn: DryPackagerDescriptor = JsonUtils.loadObject(yarnDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '--loglevel';
                 const argValue: string = undefined;
                 const inArgs: string[] = ['trace'];
@@ -209,7 +220,7 @@ describe('index', () => {
                 const cfg: DryCommandConfig = new DryCommandConfig(inArgs);
                 const outArgs: string[] = cfg.getCommandProxyArgs();
                 const outInstallParentArgs: string[] = cfg.getInstallParentCommandProxyArgs();
-    
+
                 expect(cfg.getPackagerDescriptor().getPackageManager()).to.be.equals('yarn');
                 expect(outArgs.length).to.be.equals(3);
                 expect(outArgs[0]).to.be.equals('init');
@@ -223,7 +234,7 @@ describe('index', () => {
                 const cfg: DryCommandConfig = new DryCommandConfig(inArgs);
                 const outArgs: string[] = cfg.getCommandProxyArgs();
                 const outInstallParentArgs: string[] = cfg.getInstallParentCommandProxyArgs();
-    
+
                 expect(cfg.getPackagerDescriptor().getPackageManager()).to.be.equals('yarn');
                 expect(outArgs.length).to.be.equals(3);
                 expect(outArgs[0]).to.be.equals('init');
@@ -236,7 +247,7 @@ describe('index', () => {
         describe('npm', () => {
             it('npm packager arguments simple mapping without argument value', () => {
                 const npm: DryPackagerDescriptor = JsonUtils.loadObject(npmDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '-dd';
                 const argValue: string = undefined;
                 const inArgs: string[] = [];
@@ -252,7 +263,7 @@ describe('index', () => {
             });
             it('npm packager arguments simple mapping with argument', () => {
                 const npm: DryPackagerDescriptor = JsonUtils.loadObject(npmDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '--loglevel';
                 const argValue: string = 'trace';
                 const inArgs: string[] = [];
@@ -268,7 +279,7 @@ describe('index', () => {
             });
             it('npm packager arguments simple mapping without argument value extracted', () => {
                 const npm: DryPackagerDescriptor = JsonUtils.loadObject(npmDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '--loglevel';
                 const argValue: string = undefined;
                 const inArgs: string[] = ['trace'];
@@ -308,7 +319,7 @@ describe('index', () => {
         describe('pnpm', () => {
             it('pnpm packager arguments simple mapping without argument value', () => {
                 const pnpm: DryPackagerDescriptor = JsonUtils.loadObject(pnpmDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '-dd';
                 const argValue: string = undefined;
                 const inArgs: string[] = [];
@@ -324,7 +335,7 @@ describe('index', () => {
             });
             it('pnpm packager arguments simple mapping with argument', () => {
                 const pnpm: DryPackagerDescriptor = JsonUtils.loadObject(pnpmDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '--loglevel';
                 const argValue: string = 'trace';
                 const inArgs: string[] = [];
@@ -340,7 +351,7 @@ describe('index', () => {
             });
             it('pnpm packager arguments simple mapping without argument value extracted', () => {
                 const pnpm: DryPackagerDescriptor = JsonUtils.loadObject(pnpmDescriptorFile, DryPackagerDescriptor);
-    
+
                 const arg: string = '--loglevel';
                 const argValue: string = undefined;
                 const inArgs: string[] = ['trace'];

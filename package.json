@@ -1,6 +1,6 @@
 {
   "name": "dry-dry-revised",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Use npm across multiple projects without repeating yourself",
   "main": "dist/index.js",
   "bin": {
@@ -10,13 +10,20 @@
     "src",
     "dist"
   ],
+  "files": [
+    "dist/**/*.js"
+  ],
   "scripts": {
     "build": "rimraf ./dist && tsc",
     "pretest": "yarn run build",
     "test": "mocha -r ts-node/register src/**/*.test.ts",
     "lint": "eslint --fix --no-error-on-unmatched-pattern --ext .ts src/**",
     "style": "prettier --write \"src/**/*.ts\"",
-    "release": "yarn run build && yarn test && npm version --minor && git push && git push --tags && yarn publish"
+    "prerelease": "yarn run style && yarn run lint && yarn test",
+    "release:major": "yarn run prerelease && yarn version --major && yarn run postrelease",
+    "release:minor": "yarn run prerelease && yarn version --minor && yarn run postrelease",
+    "release:patch": "yarn run prerelease && yarn version --patch && yarn run postrelease",
+    "postrelease": "git push && git push --tags && yarn publish"
   },
   "repository": {
     "type": "git",
