@@ -34,7 +34,7 @@ export enum DryOption {
  * Dry command configuration object
  */
 export class DryCommandConfig {
-    private static DEFAULT_PACKAGER: string = 'npm';
+    private static DEFAULT_PACKAGER: string = 'yarn';
 
     private packagerDescriptor: DryPackagerDescriptor;
     private readonly commandProxyArgs: string[];

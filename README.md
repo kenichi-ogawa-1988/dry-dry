@@ -153,22 +153,21 @@ package-dry.json `dry` attribute has 2 optional attributes:
 
 ## dry commands
 
-`dry` proxies all received arguments to `npm`.
-Just take your usual npm commands and replace the word `npm` with `dry`.
+`dry` proxies all received arguments to `yarn`.
+Just take your usual yarn commands and replace the word `yarn` with `dry`.
 
-| npm         | dry         |
-| ----------- | ----------- |
-| npm init    | dry init    |
-| npm i       | dry i       |
-| npm install | dry install |
-| npm publish | dry publish |
-| npm x y z   | dry x y z   |
+| yarn         | dry         |
+| ------------ | ----------- |
+| yarn init    | dry init    |
+| yarn add     | dry add     |
+| yarn publish | dry publish |
+| yarn x y z   | dry x y z   |
 
 ### dry commands : additional parameters
 
 The dry command accepts some additional parameters
 
-* --dry-packager `packager_cli_name` : specify the nodejs packager cli to proxy (default : `npm`, possible values: `npm|pnpm|yarn`)
+* --dry-packager `packager_cli_name` : specify the nodejs packager cli to proxy (default : `yarn`, possible values: `npm|pnpm|yarn`)
 * --dry-keep-package-json' : when provided the generated `package.json` file is not deleted
 * --dry-save-package-json-to' `target_file_path` : when provided a copy of the generated `package.json` file is done to `target_file_path` location
 
@@ -183,10 +182,9 @@ Other handled parameters:
 
 ### dry : using a custom package manager
 
-Dry use by default `npm` and it also allows using another package manager like `pnpm` and `yarn` trough the parameter `--dry-packager`.
+Dry use by default `yarn` and it also allows using another package manager like `npm` and `pnpm` trough the parameter `--dry-packager`.
 
-If you're not using one of the configured packagers or if you need to extend an existing packager then you can provide to 
-the `--dry-packager` parameter a path to a 'Package Manager Descriptor' json file.
+If you're not using one of the configured packagers or if you need to extend an existing packager then you can provide to the `--dry-packager` parameter a path to a 'Package Manager Descriptor' json file.
 
 All package manager available in Dry are defined using a 'Package Manager Descriptor'.
 It provides to Dry which command it needs to execute and how to handle and map dry supported arguments

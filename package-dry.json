@@ -1,0 +1,75 @@
+{
+  "name": "dry-dry-revised",
+  "version": "0.5.0",
+  "description": "Use npm across multiple projects without repeating yourself",
+  "main": "dist/index.js",
+  "bin": {
+    "dry": "dist/index.js"
+  },
+  "dirs": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "build": "rimraf ./dist && tsc",
+    "pretest": "yarn run build",
+    "test": "mocha -r ts-node/register src/**/*.test.ts",
+    "lint": "eslint --fix --no-error-on-unmatched-pattern --ext .ts src/**",
+    "style": "prettier --write \"src/**/*.ts\"",
+    "release": "yarn run build && yarn test && npm version --minor && git push && git push --tags && yarn publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kenichi-ogawa-1988/dry-dry.git"
+  },
+  "keywords": [
+    "npm",
+    "package",
+    "manager",
+    "parent",
+    "extend"
+  ],
+  "author": "Cosium",
+  "contributors": [
+    "Ken'ichi Ogawa <kenichi@ogwk.net>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kenichi-ogawa-1988/dry-dry/issues"
+  },
+  "homepage": "https://github.com/kenichi-ogawa-1988/dry-dry#readme",
+  "devDependencies": {
+    "@types/chai": "4.2.14",
+    "@types/deep-diff": "1.0.0",
+    "@types/deep-equal": "1.0.1",
+    "@types/fs-extra": "9.0.6",
+    "@types/minimist": "1.2.1",
+    "@types/mocha": "5.2.7",
+    "@types/node": "14.14.25",
+    "@typescript-eslint/eslint-plugin": "4.15.0",
+    "@typescript-eslint/eslint-plugin-tslint": "4.15.0",
+    "@typescript-eslint/parser": "4.15.0",
+    "chai": "4.3.0",
+    "deep-equal": "2.0.5",
+    "eslint": "7.19.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jsdoc": "31.6.1",
+    "eslint-plugin-prefer-arrow": "1.2.3",
+    "fs-extra": "9.1.0",
+    "gts": "3.1.0",
+    "json2typescript": "1.3.0",
+    "mocha": "5.2.0",
+    "prettier": "2.2.1",
+    "rimraf": "3.0.2",
+    "ts-node": "9.1.1",
+    "tslint": "6.1.3",
+    "typescript": "4.1.4"
+  },
+  "dependencies": {
+    "chalk": "4.1.0",
+    "deep-diff": "1.0.2",
+    "deepmerge": "4.2.2",
+    "import-cwd": "3.0.0",
+    "loglevel": "1.7.1"
+  }
+}
