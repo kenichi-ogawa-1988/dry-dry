@@ -1,20 +1,22 @@
+# DRY - Use npm across multiple projects without repeating yourself
+
 [![Code Shelter](https://www.codeshelter.co/static/badges/badge-flat.svg)](https://www.codeshelter.co/)
 [![Build Status][travis-image]][travis-url]
 [![code style: prettier][prettier-image]][prettier-url]
 
-# DRY - Use npm across multiple projects without repeating yourself
-
-### Get it
+## Get it
 
 ```bash
-$ npm i -g dry-dry
+npm i -g dry-dry
 ```
 
-### Use it
+## Use it
 
 ```bash
-$ dry init
+dry init
 ```
+
+## Key concepts
 
 ### The copy/paste madness
 
@@ -36,7 +38,7 @@ Dry provide a mecanism to centralize dependencies version management.
 `dry` is a stupid `npm` wrapper allowing any `package.json` to extend a parent file.
 The parent file can be located on the system or simply inside a published npm module.
 
-### How does it work
+## How does it work
 
 On each `dry` command, `dry`:
 
@@ -51,9 +53,9 @@ On each `dry` command, `dry`:
 
 ![](dist-test.png)
 
-##### Parent project
+### Parent project
 
-package-dry.json
+`package-dry.json`
 
 ```json
 {
@@ -77,9 +79,9 @@ package-dry.json
 }
 ```
 
-##### Child project
+### Child project
 
-package-dry.json
+`package-dry.json`
 
 ```json
 {
@@ -110,7 +112,9 @@ package-dry.json
 }
 ```
 
-Merged package.json
+After run `dry i` in children project...
+
+Merged `package.json`
 
 ```json
 {
@@ -136,7 +140,7 @@ Merged package.json
 }
 ```
 
-### package-dry.json
+## package-dry.json
 
 To do that, `dry` introduces a file named `package-dry.json`.
 `package-dry.json` replaces `package.json` in your dry projects.
@@ -147,7 +151,7 @@ package-dry.json `dry` attribute has 2 optional attributes:
 * `extends` - The parent of the current dry package
 * `dependencies` - The dependencies needed to resolve the file pointed by `extends`. Those dependencies will not be saved to your project.
 
-### dry commands
+## dry commands
 
 `dry` proxies all received arguments to `npm`.
 Just take your usual npm commands and replace the word `npm` with `dry`.
@@ -160,7 +164,7 @@ Just take your usual npm commands and replace the word `npm` with `dry`.
 | npm publish | dry publish |
 | npm x y z   | dry x y z   |
 
-#### dry commands : additional parameters
+### dry commands : additional parameters
 
 The dry command accepts some additional parameters
 
@@ -177,7 +181,7 @@ Other handled parameters:
 * -dd, --verbose: --loglevel debug
 * -ddd: --loglevel trace
 
-#### dry : using a custom package manager
+### dry : using a custom package manager
 
 Dry use by default `npm` and it also allows using another package manager like `pnpm` and `yarn` trough the parameter `--dry-packager`.
 
@@ -187,7 +191,6 @@ the `--dry-packager` parameter a path to a 'Package Manager Descriptor' json fil
 All package manager available in Dry are defined using a 'Package Manager Descriptor'.
 It provides to Dry which command it needs to execute and how to handle and map dry supported arguments
 
-    							       
 ```json
 
 {
@@ -211,11 +214,11 @@ It provides to Dry which command it needs to execute and how to handle and map d
             "allowArgInInstallParentCommand": true|false,
             "mappedTo" : [""]
         }
- 	]
+   ]
 }        
 ```
 
-DryPackagerDescriptor
+#### DryPackagerDescriptor
 
 | property                                  | description                                                                                           |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -225,8 +228,7 @@ DryPackagerDescriptor
 | preventPackageJsonChangeFromParentInstall | boolean : If the command provided in "installParentCommandTemplate" do modify the "package.json" file then turning on this boolean will restore the "package.json" file                                                                                                |
 | mappedArguments                           | ArgumentMapping[]: list of mapped arguments                                                           |
 
-
-ArgumentMapping
+#### ArgumentMapping
 
 | property                                  | description                                                                                           |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------------------- |
@@ -236,34 +238,13 @@ ArgumentMapping
 | mappedTo                                  | string[]: The argument provided as input will be replaced by this list of argument as output          |
 | mappedArgumentValues                      | Map<string, string[]> : The argument value provided as input will be used as key for this map to get the map value and return the value as the list of argument to output                                                                                              |
 
-
 You can check current descriptors with the links below:
 
 * [npm.json](packagerDescriptorTemplates/npm.json)
 * [pnpm.json](packagerDescriptorTemplates/pnpm.json)
 * [yarn.json](packagerDescriptorTemplates/yarn.json)
 
-
-
-[travis-image]: https://travis-ci.org/Cosium/dry-dry.svg?branch=master
-[travis-url]: https://travis-ci.org/Cosium/dry-dry
+[travis-image]: https://travis-ci.com/kenichi-ogawa-1988/dry-dry.svg?branch=master
+[travis-url]: https://travis-ci.com/kenichi-ogawa-1988/dry-dry
 [prettier-image]: https://img.shields.io/badge/code_style-prettier-ff69b4.svg
 [prettier-url]: https://github.com/prettier/prettier
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
